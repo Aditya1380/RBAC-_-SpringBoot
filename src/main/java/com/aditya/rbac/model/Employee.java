@@ -35,6 +35,8 @@ public class Employee {
 	
 	private Integer employeeNo;
 	
+	private String employeePasssword;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "employee_roles",

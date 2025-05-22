@@ -9,6 +9,6 @@ import com.aditya.rbac.model.Role;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long>{
 
-	Optional<Role> findByRoleName(String name);
+	Optional<Role> findByName(String name);
 	
 }

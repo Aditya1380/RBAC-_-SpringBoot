@@ -18,9 +18,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService {
 
-	private EmployeeRepository employeeRepository;
-	private RoleRepository roleRepository;
-	private PasswordEncoder passwordEncoder;
+	private final EmployeeRepository employeeRepository;
+	private final RoleRepository roleRepository;
+	private final PasswordEncoder passwordEncoder;
 
 	public Employee registerEmployee(RegisterRequest request) {
 		if (employeeRepository.findByEmployeeName(request.getEmployeeName()).isPresent()) {
@@ -29,8 +29,9 @@ public class UserService {
 		Employee employee = new Employee();
 		employee.setEmployeeDepartment(request.getEmployeeDepartment());
 		employee.setEmployeeName(request.getEmployeeName());
+		employee.setEmployeePasssword(passwordEncoder.encode(request.getEmployeePasssword()));	
 		Set<Role> roles = request.getRoles().stream()
-				.map(roleName -> roleRepository.findByRoleName(roleName)
+				.map(roleName -> roleRepository.findByName(roleName)
 						.orElseThrow(() -> new RuntimeException("Role not found: " + roleName)))
 				.collect(Collectors.toSet());
 

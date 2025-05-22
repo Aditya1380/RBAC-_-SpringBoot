@@ -2,6 +2,7 @@ package com.aditya.rbac.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,12 +24,12 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception {
 		http.csrf(csrf -> csrf.disable())
 			.authorizeHttpRequests(auth -> auth 				
-				.requestMatchers("/api/auth/admin/**").hasRole("ADMIN")
-				.requestMatchers("/api/auth/user/**").hasRole("USER")
-				.requestMatchers("/api/auth/**").permitAll()
-				
+				.requestMatchers("/api/admin/**").hasRole("ADMIN")
+				.requestMatchers("/api/user/**").hasRole("USER")
+				.requestMatchers(HttpMethod.POST, "/api/auth/add-role").permitAll()
+				.requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
 				.anyRequest().authenticated()
-				).formLogin(Customizer.withDefaults())
+				)
 				 .httpBasic(Customizer.withDefaults());
 		
 		

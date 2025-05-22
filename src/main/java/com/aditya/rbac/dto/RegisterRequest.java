@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RegisterRequest {	
-	private String employeeName;	
-	private String employeeDepartment;	
-	private String employeeNo;	
+	private String employeeName;
+	private String employeePasssword;
+	private String employeeDepartment;		
 	private Set<String> roles;
 }

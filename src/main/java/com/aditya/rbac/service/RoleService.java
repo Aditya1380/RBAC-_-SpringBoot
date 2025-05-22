@@ -12,10 +12,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RoleService {
 
-	private RoleRepository roleRepository;
+	private final RoleRepository roleRepository;
 
 	public Role addRole(RegisterRole requestrole) {
-		if (roleRepository.findByRoleName(requestrole.getRoleName()).isPresent()) {
+		if (roleRepository.findByName(requestrole.getRoleName()).isPresent()) {
 			throw new RuntimeException("Role already exists");
 		}
 		Role savedRole = new Role();

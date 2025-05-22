@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class RegisterRole {
 
-	private String RoleName;
+	private String roleName;
 }
