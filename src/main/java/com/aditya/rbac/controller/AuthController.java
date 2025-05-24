@@ -2,6 +2,8 @@ package com.aditya.rbac.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,11 @@ public class AuthController {
 	public ResponseEntity<?> registerEmployee(@RequestBody RegisterRequest request){
 		Employee employee = userService.registerEmployee(request);		
 		return new ResponseEntity("Register Employee :"+employee.getEmployeeName(), HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/me")
+	public ResponseEntity<?> currentUser(Authentication authentitcation){
+		return ResponseEntity.ok("Logged in as :"+authentitcation.getName());
 	}
 	
 	

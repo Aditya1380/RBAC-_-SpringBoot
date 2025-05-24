@@ -41,6 +41,5 @@ public class UserService {
 		savedEmployee.setEmployeeNo((int) (savedEmployee.getId() + 100));
 
 		return employeeRepository.save(savedEmployee);
-	}
-
+	}			
 }
